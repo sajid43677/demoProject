@@ -82,6 +82,10 @@
   margin: 5px 0; /* Spacing between elements */
 }
 
+.oldprice{
+  text-decoration: line-through;
+}
+
 .buynow-button {
   display: inline-block; /* Ensures it behaves like a button */
   text-decoration: none; /* Remove default link styling */

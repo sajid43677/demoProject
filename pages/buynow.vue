@@ -1,9 +1,9 @@
 <template>
     <div class="product-container">
-      <img :src="product.imageLink" alt="Product Image" class="product-image" />
+      <img :src="product.PictureModels[0].ImageUrl" alt="Product Image" class="product-image" />
       <div class="product-details">
-        <p><strong>Name:</strong> {{ product.name }}</p>
-        <p><strong>Genre:</strong> {{ product.genre }}</p>
+        <p><strong>Name:</strong> {{ product.Name }}</p>
+        <p><strong>Price:</strong> {{ product.ProductPrice.Price}}</p>
       </div>
       <button class="buy-now-button" @click="confirmPurchase">Confirm Purchase</button>
     </div>
@@ -21,12 +21,12 @@
   const product = route.query.product ? JSON.parse(route.query.product) : null;
 
   const confirmPurchase = () => {
-        if(credit.value >= product.price){
-            credit.value -= product.price;
+        if(credit.value >= product.ProductPrice.PriceValue){
+            credit.value -= product.ProductPrice.PriceValue;
             Swal.fire({
                 icon: 'success',
                 title: 'Purchase Confirmed!',
-                text: `You have successfully purchased ${product.name}.`,
+                text: `You have successfully purchased ${product.Name}.`,
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
             });

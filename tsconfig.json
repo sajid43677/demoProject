@@ -1,4 +1,13 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "strict": true,                 // Enables all strict type-checking options
+    "types": ["@types/node"],       // Includes relevant type definitions
+    "moduleResolution": "node",    // Proper module resolution
+    "esModuleInterop": true,       // Required for interop with ES modules
+    "skipLibCheck": true,          // Speeds up TypeScript compilation
+    "jsx": "preserve"              // Allows JSX/TSX syntax if needed
+  },
+  "exclude": ["node_modules"]
 }
