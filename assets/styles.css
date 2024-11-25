@@ -51,6 +51,14 @@
     justify-content: center;
   }
 
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+
   .product-box {
     flex: 0 0 calc(33.33% - 20px); /* 3 items per row, accounting for the gap */
     box-sizing: border-box; /* Ensures padding and borders are included in the width */
@@ -58,6 +66,10 @@
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-box:hover {
+    animation: shake 0.5s; /* Disable animation on hover */
   }
 
   .product-attribute {
