@@ -2,6 +2,9 @@
     <div class="category-dropdown">
       <button class="category-dropdown-toggle" @click="toggleDropdown">
         {{ selectedCategoryName }}
+        <span :class="{'dropdown-icon': true, 'open': isDropdownOpen}">
+            ▼
+        </span>
       </button>
       <ul v-if="isDropdownOpen" class="category-list">
         <li 

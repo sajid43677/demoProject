@@ -10,6 +10,7 @@
             </ul>
         </nav>
         <h1>My Boring Website</h1>
+        <NuxtLink to="/buynow" class="cart">Cart</NuxtLink>
     </header>
   </template>
 

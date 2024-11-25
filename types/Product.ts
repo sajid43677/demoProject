@@ -28,5 +28,6 @@ export interface Product {
       TotalReviews: number;
     };
     Id: number;
+    NumberOfProducts: number;
   }
   

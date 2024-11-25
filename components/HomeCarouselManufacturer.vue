@@ -65,7 +65,7 @@
         carouselIndex.value = (carouselIndex.value + 1) % totalItems;
         console.log(carouselIndex.value);
     }
- 
+
     function prev() {
         carouselIndex.value = (carouselIndex.value - 1 + totalItems) % totalItems;
     }
