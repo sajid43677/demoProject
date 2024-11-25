@@ -1,4 +1,7 @@
 <template>
+    <div class="categories">
+      <CategoryList @category-change="categoryChange" />
+    </div>
     <div class="products-wrap">
         <div v-for="(product, index) in products" :key="index" class="product-box">
             <div class="product-attribute">
@@ -14,39 +17,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { Product } from '~/types/Product';
+  import { ref, onMounted, provide } from 'vue';
+  import type { Product } from '~/types/Product';
 
-const products = ref<Product[]>([]); // Reactive array to store products
-
-// Fetch data with headers and query parameters
-const fetchProducts = async () => {
-  const apiUrl = 'https://vitalac.nop-station.com/api/catalog/category/getcategoryproducts/36?additionalProp1=string&additionalProp2=string&additionalProp3=string';
+  const categoryId = ref(0);
+  const products = ref<Product[]>([]); 
   
-  try {
-    const response = await fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'accept': '*/*',
-        'DeviceId': '43023dbb-c665-49be-8be7-eb5d6c87cb50', 
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
+  const fetchProducts = async () => {
+    const apiUrl = 'https://vitalac.nop-station.com/api/catalog/category/getcategoryproducts/' + categoryId.value;
+    
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'accept': '*/*',
+          'DeviceId': '43023dbb-c665-49be-8be7-eb5d6c87cb50', 
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      
+      const data = await response.json(); 
+      products.value = data.Data.Products as Product[];
+    } catch (error) {
+      console.error('Failed to fetch products:', error);
     }
-
-    const data = await response.json(); // Parse the JSON response
-    products.value = data.Data.Products as Product[]; // Assign the data to the reactive products array
-    console.log('data: ',data);
-    console.log(products.value);
-  } catch (error) {
-    console.error('Failed to fetch products:', error);
+  };
+  
+  async function categoryChange(catId: number) {
+    categoryId.value = catId;
+    await fetchProducts();
   }
-};
 
-// Automatically fetch products when the component is mounted
-onMounted(() => {
-  fetchProducts();
-});
+  await fetchProducts();
 </script>

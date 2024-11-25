@@ -180,3 +180,56 @@
     font-weight: bold;
     color: #ffc107;
   }
+
+  /* Dropdown Container */
+.category-dropdown {
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+/* Dropdown Button */
+.category-dropdown-toggle {
+  padding: 10px 15px;
+  cursor: pointer;
+  background-color: #072341;
+  color: white;
+  border: none;
+  font-size: 16px;
+}
+
+/* Category List */
+.category-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 200px;
+  max-height: 200px; /* Maximum height for scroll */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Category List Items */
+.category-box {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-box:hover {
+  background-color: #007bff;
+}
+
+/* Category Links */
+.category-box a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}

@@ -11,36 +11,36 @@
   
   
   <script setup>
-  import { useRoute } from 'vue-router';
-  import Swal from 'sweetalert2';
-  import { inject, ref } from 'vue';
+    import { useRoute } from 'vue-router';
+    import Swal from 'sweetalert2';
+    import { inject, ref } from 'vue';
 
-  // Use the shared credit state
-  const credit = inject('credit');
-  const route = useRoute();
-  const product = route.query.product ? JSON.parse(route.query.product) : null;
+    // Use the shared credit state
+    const credit = inject('credit');
+    const route = useRoute();
+    const product = route.query.product ? JSON.parse(route.query.product) : null;
 
-  const confirmPurchase = () => {
-        if(credit.value >= product.ProductPrice.PriceValue){
-            credit.value -= product.ProductPrice.PriceValue;
-            Swal.fire({
-                icon: 'success',
-                title: 'Purchase Confirmed!',
-                text: `You have successfully purchased ${product.Name}.`,
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-            });
-        }
-        else{
-            Swal.fire({
-                icon: 'warning',
-                title: 'Purchase failed!',
-                text: `Insufficient balance`,
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-            });
-        }
-    };
+    const confirmPurchase = () => {
+          if(credit.value >= product.ProductPrice.PriceValue){
+              credit.value -= product.ProductPrice.PriceValue;
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Purchase Confirmed!',
+                  text: `You have successfully purchased ${product.Name}.`,
+                  showConfirmButton: true,
+                  confirmButtonText: 'OK',
+              });
+          }
+          else{
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Purchase failed!',
+                  text: `Insufficient balance`,
+                  showConfirmButton: true,
+                  confirmButtonText: 'OK',
+              });
+          }
+      };
   </script>
   
   
