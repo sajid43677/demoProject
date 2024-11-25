@@ -82,7 +82,13 @@ import Index from './index.vue';
       return;
     }
     product.NumberOfProducts = quantities.value[index]; // Add the quantity to the product
-    cartProducts.value.push(product); // Add the product to the cart
+    const existingProduct = cartProducts.value.find(p => p.Id === product.Id);
+    if (existingProduct) {
+      existingProduct.NumberOfProducts += quantities.value[index];
+    } else {
+      product.NumberOfProducts = quantities.value[index]; // Add the quantity to the product
+      cartProducts.value.push(product); // Add the product to the cart
+    }
     console.log('Product cart:', cartProducts);
     // Show notification
     Swal.fire({
@@ -92,6 +98,7 @@ import Index from './index.vue';
       showConfirmButton: true,
       confirmButtonText: 'OK',
     });
+    quantities.value[index] = 1; // Reset the quantity to 1
   }
 
   await fetchProducts();
