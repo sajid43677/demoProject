@@ -13,5 +13,7 @@
   provide('credit', credit);
   const cartProducts = ref<Product[]>([]);
   provide('cartProducts', cartProducts);
+  const isAuth = ref<boolean>(false);
+  provide('isAuth', isAuth);
 </script>
 
